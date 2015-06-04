@@ -1,5 +1,5 @@
 /*!
- * ui-grid - v3.0.0-rc.21 - 2015-04-28
+ * ui-grid - v3.0.0-rc.21 - 2015-06-04
  * Copyright (c) 2015 ; License: MIT 
  */
 
@@ -2165,7 +2165,10 @@ function ($compile, $timeout, $window, $document, gridUtil, uiGridConstants) {
 
                 scrollTop = containerCtrl.viewport[0].scrollTop;
                 // Get the scroll percentage
-                var scrollYPercentage = (scrollTop + scrollYAmount) / rowContainer.getVerticalScrollLength();
+                var verticalScrollLength = rowContainer.getVerticalScrollLength();
+                var scrollYPercentage;
+                if (verticalScrollLength === 0) { scrollYPercentage = 0; }
+                else { scrollYPercentage = (scrollTop + scrollYAmount) / verticalScrollLength; }
 
                 // Keep scrollPercentage within the range 0-1.
                 if (scrollYPercentage < 0) { scrollYPercentage = 0; }
